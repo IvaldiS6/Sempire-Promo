@@ -75,7 +75,7 @@ class Raven {
     constructor(){
         this.spriteWidth = 715;
         this.spriteHeight = 632;
-        this.sizeModifier = Math.random() * 0.05 + 0.4;
+        this.sizeModifier = Math.random() * 0.5 + 0.1;
         this.width = this.spriteWidth * this.sizeModifier;
         this.height = this.spriteHeight * this.sizeModifier;
         this.x = canvas.width
