@@ -10,11 +10,11 @@ const scrollingCanvas = document.getElementById('scrollingCanvas');
 const scrollingCtx = scrollingCanvas.getContext('2d');
 windowWidth = scrollingCanvas.width = window.innerWidth;
 windowHeight = scrollingCanvas.height = window.innerHeight;
-const aspectRatio = 2400/700;
+const aspectRatio = 3000/1092;
 let windowRatio = windowWidth/windowHeight;
 let aspectModifier = 1;
-const widthScale = windowWidth / 2400;
-const heightScale = windowHeight / 700;
+const widthScale = windowWidth / 3000;
+const heightScale = windowHeight / 1092;
 let gameSpeed = 5;
 
 let score = 0;
@@ -29,22 +29,22 @@ let ravenInterval = 500;
 let lastTime = 0;
 
 const backgroundLayer1 = new Image();
-backgroundLayer1.src = 'layer-1.png';
-const backgroundLayer2 = new Image();
+backgroundLayer1.src = 'sempireBanner.png';
+/* const backgroundLayer2 = new Image();
 backgroundLayer2.src = 'layer-2.png';
 const backgroundLayer3 = new Image();
 backgroundLayer3.src = 'layer-3.png';
 const backgroundLayer4 = new Image();
 backgroundLayer4.src = 'layer-4.png';
 const backgroundLayer5 = new Image();
-backgroundLayer5.src = 'layer-5.png';
+backgroundLayer5.src = 'layer-5.png'; */
 
 class Layer {
     constructor(image, speedModifier, aspectModifier){
         this.x = 0;
         this.y = 0;
-        this.width = 2400;
-        this.height = 700;
+        this.width = 3000;
+        this.height = 1092;
         this.image = image;
         this.speedModifier = speedModifier;
         this.speed = gameSpeed * this.speedModifier;
@@ -62,20 +62,20 @@ class Layer {
     }
 }
 
-const layer1 = new Layer(backgroundLayer1, 0.2);
-const layer2 = new Layer(backgroundLayer2, 0.4);
+const layer1 = new Layer(backgroundLayer1, 0.5);
+/* const layer2 = new Layer(backgroundLayer2, 0.4);
 const layer3 = new Layer(backgroundLayer3, 0.6);
 const layer4 = new Layer(backgroundLayer4, 0.8);
-const layer5 = new Layer(backgroundLayer5, 1);
+const layer5 = new Layer(backgroundLayer5, 1); */
 
-const gameObjects = [layer1, layer2, layer3, layer4, layer5]
+const gameObjects = [layer1] //, layer2, layer3, layer4, layer5]
 
 let ravens = [];
 class Raven {
     constructor(){
-        this.spriteWidth = 271;
-        this.spriteHeight = 194;
-        this.sizeModifier = Math.random() * 0.6 + 0.4;
+        this.spriteWidth = 715;
+        this.spriteHeight = 632;
+        this.sizeModifier = Math.random() * 0.05 + 0.4;
         this.width = this.spriteWidth * this.sizeModifier;
         this.height = this.spriteHeight * this.sizeModifier;
         this.x = canvas.width
@@ -84,7 +84,7 @@ class Raven {
         this.directionY = Math.random() * 5 - 2.5;
         this.markedForDeletion = false;
         this.image = new Image();
-        this.image.src = 'raven.png';
+        this.image.src = 'logoTransparent.png';
         this.frame = 0;
         this.maxFrame = 4;
         this.timeSinceFlap = 0;
@@ -116,7 +116,7 @@ class Raven {
     draw(){
         collisionCtx.fillStyle = this.color;
         collisionCtx.fillRect(this.x, this.y, this.width, this.height);
-        ctx.drawImage(this.image, this.frame * this.spriteWidth, 0, this.spriteWidth, this. spriteHeight, this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.image, 0, 0, this.spriteWidth, this. spriteHeight, this.x, this.y, this.width, this.height);
     }
 }
 let explosions = [];
