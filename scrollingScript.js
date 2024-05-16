@@ -1,20 +1,20 @@
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = 1400;
+canvas.height = 720;
 const collisionCanvas = document.getElementById('collisionCanvas');
 const collisionCtx = collisionCanvas.getContext('2d');
-collisionCanvas.width = window.innerWidth;
-collisionCanvas.height = window.innerHeight;
+collisionCanvas.width = 1400;
+collisionCanvas.height = 720;
 const scrollingCanvas = document.getElementById('scrollingCanvas');
 const scrollingCtx = scrollingCanvas.getContext('2d');
-windowWidth = scrollingCanvas.width = window.innerWidth;
-windowHeight = scrollingCanvas.height = window.innerHeight;
-const aspectRatio = 3000/1092;
-let windowRatio = windowWidth/windowHeight;
-let aspectModifier = 1;
-const widthScale = windowWidth / 3000;
-const heightScale = windowHeight / 1092;
+// windowWidth = scrollingCanvas.width = window.innerWidth;
+// windowHeight = scrollingCanvas.height = window.innerHeight;
+// const aspectRatio = 3000/1092;
+// let windowRatio = windowWidth/windowHeight;
+// let aspectModifier = 1;
+// const widthScale = windowWidth / 3000;
+// const heightScale = windowHeight / 1092;
 let gameSpeed = 5;
 
 let score = 0;
@@ -27,6 +27,7 @@ else aspectModifier = widthScale;
 let timeToNextRaven = 0;
 let ravenInterval = 500;
 let lastTime = 0;
+const fullScreenButton = this.document.getElementById('fullScreenButton');
 
 const backgroundLayer1 = new Image();
 backgroundLayer1.src = 'sempireBanner.png';
@@ -40,7 +41,7 @@ const backgroundLayer5 = new Image();
 backgroundLayer5.src = 'layer-5.png'; */
 
 class Layer {
-    constructor(image, speedModifier, aspectModifier){
+    constructor(image, speedModifier){ // , aspectModifier){
         this.x = 0;
         this.y = 0;
         this.width = 3000;
@@ -49,16 +50,16 @@ class Layer {
         this.speedModifier = speedModifier;
         this.speed = gameSpeed * this.speedModifier;
     }
-    update(aspectModifier){
+    update(){ // aspectModifier){
         this.speed = gameSpeed * this.speedModifier;
-        if (this.x <= -(this.width * aspectModifier)){
+        if (this.x <= -(this.width)){ //  * aspectModifier)){
             this.x = 0;
         }
         this.x = Math.floor(this.x - this.speed);
     }
-    draw(aspectModifier){
-        ctx.drawImage(this.image, this.x, this.y, this.width * aspectModifier, this.height * aspectModifier);
-        ctx.drawImage(this.image, this.x + (this.width * aspectModifier), this.y, this.width * aspectModifier, this.height * aspectModifier);
+    draw(){ // aspectModifier){
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height); // * aspectModifier, this.height * aspectModifier);
+        ctx.drawImage(this.image, this.x + this.width, this.y, this.width, this.height); //  * aspectModifier), this.y, this.width * aspectModifier, this.height * aspectModifier);
     }
 }
 
