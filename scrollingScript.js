@@ -61,6 +61,9 @@ class Layer {
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height); // * aspectModifier, this.height * aspectModifier);
         ctx.drawImage(this.image, this.x + this.width, this.y, this.width, this.height); //  * aspectModifier), this.y, this.width * aspectModifier, this.height * aspectModifier);
     }
+    restart(){
+        this.x = 0;
+    }
 }
 
 const layer1 = new Layer(backgroundLayer1, 0.5);
@@ -193,6 +196,25 @@ function drawGameOver(){
     ctx.fillText('GAME OVER, your score is:  ' + score, canvas.width * 0.5, canvas.height * 0.5);
 }
 
+function restartGame(){
+    player.restart();
+    background.restart();
+    enemies = [];
+    score = 0;
+    gameOver = false;
+    animate(0);
+}
+
+function toggleFullScreen(){
+    if (!document.fullscreenElement) {
+        canvas.requestFullscreen().catch(err => {
+            alert(`Error, can't enable full-screen mode: ${err.message}`)
+        });
+    } else {
+        document.exitFullscreen();
+    }
+}
+fullScreenButton.addEventListener('click', toggleFullScreen);
 
 window.addEventListener('click', function(e){
     const detectPixelColor = collisionCtx.getImageData(e.x, e.y, 1, 1);
