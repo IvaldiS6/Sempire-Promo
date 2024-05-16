@@ -45,7 +45,7 @@ class Layer {
         this.y = 0;
         this.width = 3000;
         this.height = 1092;
-        this.image = image;
+        this.image = image * aspectModifier;
         this.speedModifier = speedModifier;
         this.speed = gameSpeed * this.speedModifier;
     }
@@ -72,12 +72,12 @@ const gameObjects = [layer1] //, layer2, layer3, layer4, layer5]
 
 let ravens = [];
 class Raven {
-    constructor(){
+    constructor(aspectModifier){
         this.spriteWidth = 715;
         this.spriteHeight = 632;
         this.sizeModifier = Math.random() * 0.5 + 0.1;
-        this.width = this.spriteWidth * this.sizeModifier;
-        this.height = this.spriteHeight * this.sizeModifier;
+        this.width = this.spriteWidth * this.sizeModifier * aspectModifier;
+        this.height = this.spriteHeight * this.sizeModifier * aspectModifier;
         this.x = canvas.width
         this.y = Math.random() * (canvas.height - this.height);
         this.directionX = Math.random() * 5 + 3;
